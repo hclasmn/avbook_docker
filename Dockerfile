@@ -3,8 +3,9 @@ LABEL author="xjx"
 ARG FILE_PATH=/var/
 WORKDIR ${FILE_PATH}
 ADD docker-entrypoint.sh /bin/
+ADD ./avbook /var/avbook
 RUN cp /etc/apt/sources.list /etc/apt/sources_init.list && \
-    sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     apt update && \
     apt-get update -y && \
     apt-get upgrade -y && \
@@ -53,22 +54,21 @@ RUN apt-get -y install php7.2 && \
     apt-get install -y php7.2-snmp && \     
     apt-get install -y php7.2-tidy && \     
     apt-get install -y php7.2-zip
-RUN apt-get install -y git && \
-    cd ${FILE_PATH} && \
+RUN cd ${FILE_PATH} && \
 #    git config --global http.sslVerify false && \
 #    git config --global http.postBuffer 1048576000 && \
-    git clone --depth=1 https://github.com/xiaojunxi2008/avbook.git && \
-    apt-get install -y wget && \
-    apt-get install zip unzip && \
-    wget https://getcomposer.org/composer.phar && \
-    mv composer.phar composer && \
+#    git clone --depth=1 https://github.com/xiaojunxi2008/avbook.git && \
+    apt-get install -y composer && \
+#    apt-get install zip unzip && \
+#    wget https://getcomposer.org/composer.phar && \
+#    mv composer.phar composer && \
 #    groupadd -r avbook && \
 #    useradd -r -g avbook avbook && \
 #    su avbook && \
-    chmod +x composer && \
-    mv composer /usr/local/bin && \
-#    chmod 777 ${FILE_PATH}avbook/ && \
-    cd avbook && \
+#    chmod +x composer && \
+#    mv composer /usr/local/bin && \
+    chmod 777 /var/avbook/ && \
+    cd /var/avbook && \
     composer install && \
     apt-get install -y  nginx
 RUN apt-get install -y mariadb-server
