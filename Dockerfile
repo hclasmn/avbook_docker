@@ -6,7 +6,7 @@ ADD docker-entrypoint.sh /bin/
 ADD avbook.zip /var/
 #ADD ./avbook /var/avbook
 RUN cp /etc/apt/sources.list /etc/apt/sources_init.list && \
-    sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     apt update && \
     apt-get update -y && \
     apt-get upgrade -y && \
