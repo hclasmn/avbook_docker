@@ -3,6 +3,7 @@ LABEL author="xjx"
 ARG FILE_PATH=/var/
 WORKDIR ${FILE_PATH}
 ADD docker-entrypoint.sh /bin/
+ADD avbook.zip /var/
 #ADD ./avbook /var/avbook
 RUN cp /etc/apt/sources.list /etc/apt/sources_init.list && \
     sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
@@ -54,13 +55,13 @@ RUN apt-get -y install php7.2 && \
     apt-get install -y php7.2-snmp && \     
     apt-get install -y php7.2-tidy && \     
     apt-get install -y php7.2-zip
-RUN apt-get install -y git && \
-    cd ${FILE_PATH} && \
+RUN  cd ${FILE_PATH} && \
 #    git config --global http.sslVerify false && \
 #    git config --global http.postBuffer 1048576000 && \
-    git clone --depth=1 https://github.com/xiaojunxi2008/avbook.git && \
+#    git clone --depth=1 https://github.com/xiaojunxi2008/avbook.git && \
 #    apt-get install -y wget && \
-#    apt-get install zip unzip && \
+    apt-get install zip unzip && \
+    unzip avbook。zip && \
     apt-get install -y composer && \
     chmod 777 ${FILE_PATH}avbook/ && \
     cd avbook && \
