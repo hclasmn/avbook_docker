@@ -61,7 +61,7 @@ RUN  cd ${FILE_PATH} && \
 #    git clone --depth=1 https://github.com/xiaojunxi2008/avbook.git && \
 #    apt-get install -y wget && \
     apt-get install zip unzip && \
-    unzip avbook。zip && \
+    unzip avbook.zip && \
     apt-get install -y composer && \
     chmod 777 ${FILE_PATH}avbook/ && \
     cd avbook && \
